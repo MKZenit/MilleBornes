@@ -1,4 +1,4 @@
-package testsFonctionnels;
+package tests_fonctionnels;
 
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
@@ -10,15 +10,14 @@ import jeu.Sabot;
 public class TestSabot {
 
 	public static void main(String[] args) {
-		verificationSabotPiocher();
-		//verificationSabotIterateur();
+		//verificationSabotPiocher();
+		verificationSabotIterateur();
 		//verificationSabotIterateur2();
 	}
 
 	public static Sabot getNouveauSabot() {
 		JeuDeCartes jdc = new JeuDeCartes(JeuDeCartes.getConfigurationClassique());
-		Sabot sabot = new Sabot(jdc.donnerCartes());
-		return sabot;
+		return new Sabot(jdc.donnerCartes());
 	}
 	
 	public static void verificationSabotPiocher() {
@@ -26,7 +25,8 @@ public class TestSabot {
 		StringBuilder sb = new StringBuilder();
 		
 		while(!sabot.estVide())
-			sb.append(sabot.piocher().toString());
+			sb.append(sabot.piocher().toString())
+			  .append('\n');
 		
 		System.out.println(sb);
 	}

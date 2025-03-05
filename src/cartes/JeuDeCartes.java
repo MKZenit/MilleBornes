@@ -1,6 +1,11 @@
 package cartes;
 
 public class JeuDeCartes {
+	private Configuration[] configurations;
+	
+	public JeuDeCartes(Configuration[] configurations) {
+		this.configurations = configurations;
+	}
 
 	private static class Configuration {
 
@@ -49,11 +54,6 @@ public class JeuDeCartes {
 	}
 
 	
-	private Configuration[] configurations;
-	
-	public JeuDeCartes(Configuration[] configurations) {
-		this.configurations = configurations;
-	}
 
 	public String affichageJeuDeCartes() {
 		StringBuilder sb = new StringBuilder();
@@ -82,4 +82,20 @@ public class JeuDeCartes {
 		return cartes;
 	}
 	
+	public boolean checkCount() {
+		Carte[] cartes = donnerCartes();
+		int nbCarteType = 0; // cartes du même type
+		int indexConfiguration = 0;
+		Carte cartePrecedente = cartes[0];
+		for(var carte : cartes) {
+			if(!carte.equals(cartePrecedente)) {
+				if(configurations[indexConfiguration].nbExemplaires != nbCarteType) return false;
+				indexConfiguration++;
+				nbCarteType = 0;
+			}
+			nbCarteType++;
+			cartePrecedente = carte;
+		}
+		return true;
+	}
 }
