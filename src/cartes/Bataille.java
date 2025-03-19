@@ -6,4 +6,8 @@ public abstract class Bataille extends Probleme {
 		super(type);
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
+	}
 }
